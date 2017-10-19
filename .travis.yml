@@ -1,0 +1,18 @@
+language: node_js
+cache: yarn
+
+git:
+  depth: 1
+
+node_js:
+  - "node"
+  - "lts/*"
+
+deploy:
+  provider: npm
+  email: account@jauer.org
+  api_key:
+    secure: e5doPSFf8IajY9KXvOwAfYIu9nRwCVOlp+7JI+W5oUzQPhxz1qoJEvRL66eQLjithlNeaAgCS6smWfRahQ4TUxk554FvhDrZacH/vDH2Tea0GWhpuVS1v6KcOnLGj3YPxFsva1vxlRhLQqkLxIB1+BdOrZtgoNf5ZxB3ujGzsrHeIpWe0LXtMI02otnTCPVtA9H72N0LFfaGeK2+psGCixBSrV4KFrbf+45PJ3xsd5zTpEsctVjXtJcUhFxv3NKHVqDHR0z65hG5m46/UEViyJ+B6BDmK2Y4aF92NCehKgqSChxOdGmKBCvzJKXuht/hPbslnPrUxxR4CNPDXizBi0366t5tzrCnybH7ITOLnqZqOByQC+YjYEfiE10o7KWdhN4Hfk9TGAxPQbKo7zKr2gLRD0FlCcvUBjVSC9wtyuKbl+0Q5fCjf8Tk7NlTP+1j4hOFZfEqsaO/FrL/WMkWd48FLAAwtruQLc8us8SJCyNlnAMMSPJLLTaY8Yc+UyJrz3V+EFUx/L/YKZMbcK/NepHooNfgkZFfuRyIS8RLa8JFNUHShllwSqJiTYNbchV/Xaa8zIsxjjG2r7t716OB+FGs25rHEN3/FKi6LrLh+Rs4zbBs6OCY2oSoeHltpyUnpBej1O9lER0+548n5ra/xd7+m4kwCGjq+TuQ+2eGLMs=
+  on:
+    tags: true
+    repo: getsentry/probot-config

@@ -1,0 +1,33 @@
+{
+  "name": "probot-config",
+  "version": "0.1.0",
+  "description": "A Probot extension that manages shared configs",
+  "main": "index.js",
+  "repository": "https://github.com/getsentry/probot-config",
+  "author": "Jan Michael Auer <jan.auer@sentry.io>",
+  "license": "BSD-3-Clause",
+  "private": false,
+  "scripts": {
+    "fix": "eslint --fix .",
+    "lint": "eslint .",
+    "test": "eslint . && jest",
+    "test:watch": "jest --watch --notify"
+  },
+  "dependencies": {
+    "js-yaml": "^3.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb-base": "^12.0.2",
+    "eslint-plugin-import": "^2.7.0",
+    "jest": "^21.2.1"
+  },
+  "peerDependencies": {
+    "probot": "^0.11.0"
+  },
+  "engines": {
+    "node": ">=6.0.0",
+    "npm": ">= 2.0.0",
+    "yarn": ">= 1.0.0"
+  }
+}
