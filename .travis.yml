@@ -6,7 +6,7 @@ git:
 
 node_js:
   - "node"
-  - "lts/*"
+  - "7.7.0"
 
 deploy:
   provider: npm
