@@ -48,6 +48,18 @@ test('loads a direct config', async () => {
   expect(spy).toHaveBeenLastCalledWith({ owner: 'owner', repo: 'repo', path: '.github/test.yml' });
 });
 
+test('merges the default config', async () => {
+  const spy = jest.fn()
+    .mockImplementationOnce(() => 'foo: foo')
+    .mockImplementationOnce(() => mockError(500));
+
+  const config = await getConfig(mockContext(spy), 'test.yml', { def: true });
+  expect(config).toEqual({ foo: 'foo', def: true });
+
+  expect(spy).toHaveBeenCalledTimes(1);
+  expect(spy).toHaveBeenLastCalledWith({ owner: 'owner', repo: 'repo', path: '.github/test.yml' });
+});
+
 test('merges a base config', async () => {
   const spy = jest.fn()
     .mockImplementationOnce(() => 'foo: foo\nbar: bar\n_extends: base')
@@ -55,6 +67,19 @@ test('merges a base config', async () => {
 
   const config = await getConfig(mockContext(spy), 'test.yml');
   expect(config).toEqual({ foo: 'foo', bar: 'bar', baz: 'baz' });
+
+  expect(spy).toHaveBeenCalledTimes(2);
+  expect(spy).toHaveBeenCalledWith({ owner: 'owner', repo: 'repo', path: '.github/test.yml' });
+  expect(spy).toHaveBeenLastCalledWith({ owner: 'owner', repo: 'base', path: '.github/test.yml' });
+});
+
+test('merges the base and default config', async () => {
+  const spy = jest.fn()
+    .mockImplementationOnce(() => 'foo: foo\n_extends: base')
+    .mockImplementationOnce(() => 'bar: bar');
+
+  const config = await getConfig(mockContext(spy), 'test.yml', { def: true });
+  expect(config).toEqual({ foo: 'foo', bar: 'bar', def: true });
 
   expect(spy).toHaveBeenCalledTimes(2);
   expect(spy).toHaveBeenCalledWith({ owner: 'owner', repo: 'repo', path: '.github/test.yml' });

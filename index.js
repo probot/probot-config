@@ -75,25 +75,29 @@ function getBaseParams(params, base) {
  * is returned. If the base repository does not exist or does not contain
  * the config file, it is ignored.
  *
+ * If a default config is given, it is merged with the config from the
+ * repository, if it exists.
+ *
  * @param {Context} context A Probot context
  * @param {string} fileName Name of the config file
+ * @param {object} defaultConfig A default config that is merged in
  * @returns {object} The merged configuration
  * @async
  */
-async function getConfig(context, fileName) {
+async function getConfig(context, fileName, defaultConfig) {
   const filePath = path.join(CONFIG_PATH, fileName);
   const params = context.repo({ path: filePath });
 
   const config = await loadYaml(context, params);
   if (config == null || config[BASE_KEY] == null) {
-    return config;
+    return config && Object.assign({}, defaultConfig, config);
   }
 
   const baseParams = getBaseParams(params, config[BASE_KEY]);
   const baseConfig = await loadYaml(context, baseParams);
 
   delete config[BASE_KEY];
-  return Object.assign({}, baseConfig, config);
+  return Object.assign({}, defaultConfig, baseConfig, config);
 }
 
 module.exports = getConfig;
