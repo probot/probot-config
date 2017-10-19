@@ -1,4 +1,4 @@
-# Probot: Secure
+# Probot: Config
 
 [![Downloads][npm-downloads]][npm-url]
 [![version][npm-version]][npm-url]
