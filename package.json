@@ -2,7 +2,7 @@
   "name": "probot-config",
   "version": "0.1.0",
   "description": "A Probot extension that manages shared configs",
-  "main": "index.js",
+  "main": "lib/index.js",
   "repository": "https://github.com/getsentry/probot-config",
   "author": "Jan Michael Auer <jan.auer@sentry.io>",
   "license": "BSD-3-Clause",
