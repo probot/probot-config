@@ -8,19 +8,28 @@
   "license": "BSD-3-Clause",
   "private": false,
   "scripts": {
-    "fix": "eslint --fix .",
-    "lint": "eslint .",
-    "test": "eslint . && jest",
+    "fix:eslint": "eslint --fix lib",
+    "fix:prettier": "prettier --write 'lib/**/*.js'",
+    "fix": "npm-run-all fix:eslint fix:prettier",
+    "start": "probot run ./index.js",
+    "test:jest": "jest",
+    "test:eslint": "eslint lib",
+    "test:prettier": "prettier-check 'lib/**/*.js'",
+    "test": "npm-run-all test:jest test:eslint test:prettier",
     "test:watch": "jest --watch --notify"
   },
   "dependencies": {
     "js-yaml": "^3.10.0"
   },
   "devDependencies": {
-    "eslint": "^4.8.0",
-    "eslint-config-airbnb-base": "^12.0.2",
-    "eslint-plugin-import": "^2.7.0",
-    "jest": "^21.2.1"
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.8.0",
+    "eslint-plugin-import": "^2.8.0",
+    "jest": "^21.2.1",
+    "npm-run-all": "^4.1.2",
+    "prettier": "^1.8.2",
+    "prettier-check": "^2.0.0"
   },
   "peerDependencies": {
     "probot": "^0.11.0"
