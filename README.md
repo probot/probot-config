@@ -1,16 +1,17 @@
 # Probot: Config
 
-[![Downloads][npm-downloads]][npm-url]
-[![version][npm-version]][npm-url]
+[![Downloads][npm-downloads]][npm-url] [![version][npm-version]][npm-url]
 [![License][npm-license]][license-url]
 [![Build Status][travis-status]][travis-url]
 
-A [Probot](https://probot.github.io) extension to easily share configs between repositories.
+A [Probot](https://probot.github.io) extension to easily share configs between
+repositories.
 
 ## Setup
 
-Just put common configuration keys in a common repository within your organization.
-Then reference this repository from config files with the same name.
+Just put common configuration keys in a common repository within your
+organization. Then reference this repository from config files with the same
+name.
 
 ```yaml
 # octocat/probot-settings:.github/test.yaml
@@ -37,8 +38,9 @@ _extends: other/probot-settings
 other: DDD
 ```
 
-Note that the files must be at the **exact same location** within the repositories.
-Configs are shallow-merged, nested objects have to be redefined completely.
+Note that the files must be at the **exact same location** within the
+repositories. Configs are shallow-merged, nested objects have to be redefined
+completely.
 
 ## Usage
 
@@ -52,6 +54,32 @@ module.exports = robot => {
   });
 };
 ```
+
+## Development
+
+```sh
+# Install dependencies
+yarn
+
+# Run the bot
+yarn start
+
+# Run test watchers
+yarn test:watch
+```
+
+We use [prettier](https://prettier.io/) for auto-formatting and
+[eslint](https://eslint.org/) as linter. Both tools can automatically fix a lot
+of issues for you. To invoke them, simply run:
+
+```sh
+yarn fix
+```
+
+It is highly recommended to use VSCode and install the suggested extensions.
+They will configure your IDE to match the coding style, invoke auto formatters
+every time you save and run tests in the background for you. No need to run the
+watchers manually.
 
 [license-url]: https://github.com/getsentry/probot-config/blob/master/LICENSE
 [npm-url]: https://www.npmjs.com/package/probot-config
