@@ -42,6 +42,19 @@ Note that the files must be at the **exact same location** within the
 repositories. Configs are shallow-merged, nested objects have to be redefined
 completely.
 
+However, if a base repository is named `.github`, the config may optionally be
+stored relative to the root of the repository rather than relative a `.github/`
+directory.
+
+```yaml
+# octocat/repo1:.github/test.yaml
+_extends: .github
+other: FFF
+
+# octocat/.github:test.yaml
+other: GGG
+```
+
 ## Usage
 
 ```js
