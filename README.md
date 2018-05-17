@@ -63,6 +63,50 @@ other: GGG
 other: HHH
 ```
 
+Additionally, if there is no config file, but there is a repo in the org named
+`.github`, it will be used as a base repository.
+
+```yaml
+# octocat/repo1:.github/test.yaml <-- missing!
+# octocat/.github:test.yaml
+other: III
+```
+
+## Recipes
+
+### An opt-in pattern
+
+You may want to create a configuration that other projects in your org inherit
+from on an explicit opt-in basis.  Example:
+
+```yaml
+# octocat/.github:_test.yaml
+shared1: Will be inherited by repo1 and not repo2
+
+# octocat/repo1:.github/test.yaml
+# Inherits from octocat/.github:_test.yaml
+_extends: .github:_test.yaml
+
+# octocat/repo3:.github/test.yaml <--missing!
+# Is not merged with another config.
+```
+
+### An opt-out pattern
+
+Alternatively, you may want to default to the config in your `.github` project
+and occasionally opt-out.  Example:
+
+```yaml
+# octocat/.github:test.yaml
+shared1: Will be inherited by repo1 and not repo2
+
+# octocat/repo1:.github/test.yaml <-- missing!
+# Uses octocat/.github/test.yaml instead
+
+# octocat/repo3:.github/test.yaml <-- either empty or populated
+# Will not inherit shared1, since no _extends field is specified
+```
+
 ## Usage
 
 ```js
