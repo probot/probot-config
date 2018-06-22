@@ -31,6 +31,9 @@ other: BBB
 other: CCC # standalone, does not extend other configs
 ```
 
+Configs are shallow-merged, nested objects have to be redefined
+completely.
+
 You can also reference configurations from other organizations:
 
 ```yaml
@@ -38,21 +41,26 @@ _extends: other/probot-settings
 other: DDD
 ```
 
-Note that the files must be at the **exact same location** within the
-repositories. Configs are shallow-merged, nested objects have to be redefined
-completely.
+Additionally, you can specify a specific path for the configuration by
+appending a colon after the project.
 
-However, if a base repository is named `.github`, the config may optionally be
-stored relative to the root of the repository rather than relative a `.github/`
-directory.
+```yaml
+_extends: probot-settings:.github/other_test.yaml
+other: FFF
+```
+
+Note that by default, inherited configurations are in the **exact same
+location** within the repositories.  However, if a base repository is named
+`.github`, the default config path is relative to the root of the repository
+rather than relative to a `.github/` directory.
 
 ```yaml
 # octocat/repo1:.github/test.yaml
 _extends: .github
-other: FFF
+other: GGG
 
 # octocat/.github:test.yaml
-other: GGG
+other: HHH
 ```
 
 ## Usage
