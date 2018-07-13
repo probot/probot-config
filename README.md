@@ -101,7 +101,7 @@ and occasionally opt-out.  Example:
 shared1: Will be inherited by repo1 and not repo2
 
 # octocat/repo1:.github/test.yaml <-- missing!
-# Uses octocat/.github/test.yaml instead
+# Uses octocat/.github:test.yaml instead
 
 # octocat/repo3:.github/test.yaml <-- either empty or populated
 # Will not inherit shared1, since no _extends field is specified
