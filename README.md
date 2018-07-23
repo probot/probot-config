@@ -49,10 +49,8 @@ _extends: probot-settings:.github/other_test.yaml
 other: FFF
 ```
 
-Note that by default, inherited configurations are in the **exact same
-location** within the repositories.  However, if a base repository is named
-`.github`, the default config path is relative to the root of the repository
-rather than relative to a `.github/` directory.
+Inherited configurations are in the **exact same location** within the 
+repositories.
 
 ```yaml
 # octocat/repo1:.github/test.yaml
@@ -68,11 +66,15 @@ Additionally, if there is no config file, but there is a repo in the org named
 
 ```yaml
 # octocat/repo1:.github/test.yaml <-- missing!
-# octocat/.github:test.yaml
+# octocat/.github:.github/test.yaml
 other: III
 ```
 
 ## Recipes
+
+These recipes are specific to usage of the .github repo name, which is the 
+recommended place to store your configuration files. Within the .github repository, 
+your configuration must live in a `.github/` folder.
 
 ### An opt-in pattern
 
@@ -80,7 +82,7 @@ You may want to create a configuration that other projects in your org inherit
 from on an explicit opt-in basis.  Example:
 
 ```yaml
-# octocat/.github:_test.yaml
+# octocat/.github:.github/_test.yaml
 shared1: Will be inherited by repo1 and not repo2
 
 # octocat/repo1:.github/test.yaml
@@ -97,7 +99,7 @@ Alternatively, you may want to default to the config in your `.github` project
 and occasionally opt-out.  Example:
 
 ```yaml
-# octocat/.github:test.yaml
+# octocat/.github:.github/test.yaml
 shared1: Will be inherited by repo1 and not repo2
 
 # octocat/repo1:.github/test.yaml <-- missing!
