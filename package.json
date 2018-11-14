@@ -19,6 +19,7 @@
     "test:watch": "jest --watch --notify"
   },
   "dependencies": {
+    "deepmerge": "^2.2.1",
     "js-yaml": "^3.10.0"
   },
   "devDependencies": {
