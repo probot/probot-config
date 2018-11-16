@@ -31,8 +31,8 @@ other: BBB
 other: CCC # standalone, does not extend other configs
 ```
 
-Configs are shallow-merged, nested objects have to be redefined
-completely.
+Configs are deeply-merged. Nested objects do not have to be redefined
+completely. This is accomplished using [deepmerge](https://github.com/KyleAMathews/deepmerge). When using probot-config in an app, you can pass [options](https://github.com/KyleAMathews/deepmerge#options) through to `deepmerge`.
 
 You can also reference configurations from other organizations:
 
@@ -79,7 +79,7 @@ your configuration must live in a `.github/` folder.
 ### An opt-in pattern
 
 You may want to create a configuration that other projects in your org inherit
-from on an explicit opt-in basis.  Example:
+from on an explicit opt-in basis. Example:
 
 ```yaml
 # octocat/.github:.github/_test.yaml
@@ -88,7 +88,6 @@ shared1: Will be inherited by repo1 and not repo2
 # octocat/repo1:.github/test.yaml
 # Inherits from octocat/.github:_test.yaml
 _extends: .github:_test.yaml
-
 # octocat/repo3:.github/test.yaml <--missing!
 # Is not merged with another config.
 ```
@@ -96,12 +95,11 @@ _extends: .github:_test.yaml
 ### An opt-out pattern
 
 Alternatively, you may want to default to the config in your `.github` project
-and occasionally opt-out.  Example:
+and occasionally opt-out. Example:
 
 ```yaml
 # octocat/.github:.github/test.yaml
 shared1: Will be inherited by repo1 and not repo2
-
 # octocat/repo1:.github/test.yaml <-- missing!
 # Uses octocat/.github:test.yaml instead
 
