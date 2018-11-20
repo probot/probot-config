@@ -1,6 +1,6 @@
 {
   "name": "probot-config",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A Probot extension that manages shared configs",
   "main": "lib/index.js",
   "repository": "https://github.com/getsentry/probot-config",
