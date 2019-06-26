@@ -1,26 +1,26 @@
 language: node_js
-cache: yarn
+cache: npm
 
-git:
-  depth: 1
+branches:
+  only:
+    - master
+    - beta # semantic-release preview releases
+    - next # semantic-release @next releases
+    - /^\d+\.x$/ # semantic-release maintenance releases
+    - /^greenkeeper.*$/ # Greenkeeper updates
 
-node_js:
-  - "node"
-  - "8"
+stages:
+  - test
+  - name: release
+    if: branch =~ /^(\d+\.x|master|next|beta)$/ AND type IN (push)
 
-matrix:
+jobs:
   include:
-    script: npm pack
-    after_success:
-      - npm install -g @zeus-ci/cli
-      - zeus upload -t "application/tar+npm" *.tgz
-
-notifications:
-  webhooks:
-    urls:
-      - https://zeus.ci/hooks/b7a66dd4-d11d-11e7-ae66-0a580a280646/public/provider/travis/webhook
-    on_success: always
-    on_failure: always
-    on_start: always
-    on_cancel: always
-    on_error: always
+    - stage: test
+      node_js: 12
+    - node_js: 10
+    - node_js: 8
+    - stage: release
+      node_js: lts/*
+      env: semantic-release
+      script: npx semantic-release
