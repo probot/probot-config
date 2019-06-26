@@ -49,7 +49,7 @@ _extends: probot-settings:.github/other_test.yaml
 other: FFF
 ```
 
-Inherited configurations are in the **exact same location** within the 
+Inherited configurations are in the **exact same location** within the
 repositories.
 
 ```yaml
@@ -72,8 +72,8 @@ other: III
 
 ## Recipes
 
-These recipes are specific to usage of the .github repo name, which is the 
-recommended place to store your configuration files. Within the .github repository, 
+These recipes are specific to usage of the .github repo name, which is the
+recommended place to store your configuration files. Within the .github repository,
 your configuration must live in a `.github/` folder.
 
 ### An opt-in pattern
@@ -124,13 +124,13 @@ module.exports = robot => {
 
 ```sh
 # Install dependencies
-yarn
+npm install
 
 # Run the bot
-yarn start
+npm start
 
 # Run test watchers
-yarn test:watch
+npm run test:watch
 ```
 
 We use [prettier](https://prettier.io/) for auto-formatting and
@@ -138,7 +138,7 @@ We use [prettier](https://prettier.io/) for auto-formatting and
 of issues for you. To invoke them, simply run:
 
 ```sh
-yarn fix
+npm run fix
 ```
 
 It is highly recommended to use VSCode and install the suggested extensions.
