@@ -1,3 +1,7 @@
+# This project has been moved to Probot core
+
+This project has been merged into [Probot](https://github.com/probot/probot) itself as part of the core `context.config` helper. Any future development takes place there.
+
 # Probot: Config
 
 [![Downloads][npm-downloads]][npm-url] [![version][npm-version]][npm-url]
